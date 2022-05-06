@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a7f4e484540f6a458197cd39a5a95d5, type: 3}
+  m_Name: ActiveDeckOptions
+  m_EditorClassIdentifier: 
+  suits:
+  - {fileID: 11400000, guid: d1720905e19a78d42ae29f741fd05a98, type: 2}
+  - {fileID: 11400000, guid: 9f08c689776126e40b3c5b39797f4295, type: 2}
+  - {fileID: 11400000, guid: 84046d552db15404f967d6bd835258b5, type: 2}
+  - {fileID: 11400000, guid: 52de72f282fc19c49bce2f93c25b554e, type: 2}
+  cardTemplates:
+  - {fileID: 7676532028838564824, guid: c5960cb70abb2b5428868a4e198be4e8, type: 3}
+  - {fileID: 7676532028838564824, guid: f6e2a75251be3a141bba292fb0524477, type: 3}
+  - {fileID: 7676532028838564824, guid: 4ef81ab96f5361b40897df74e145c03d, type: 3}
+  - {fileID: 7676532028838564824, guid: b47022b81b1e0344ba2ace0a6500c9c5, type: 3}
+  - {fileID: 7676532028838564824, guid: fe7919fe6b36c4244b121b8855ec29a7, type: 3}
+  - {fileID: 7676532028838564824, guid: da399eb2f6b6db3448a97f8d2351d890, type: 3}
+  - {fileID: 7676532028838564824, guid: 424cc3d05d182f44d9c8af7bd8f65ab0, type: 3}
+  - {fileID: 7676532028838564824, guid: 8a8159c2c7febe74b9fe53d4f9ee9f82, type: 3}
+  - {fileID: 7676532028838564824, guid: f5448e11e7407e240bfbae6d1213f2eb, type: 3}
+  - {fileID: 7676532028838564824, guid: f40b2c46fae02f540917030284ec2ec3, type: 3}
+  - {fileID: 7676532028838564824, guid: 39dee9e65d003684eb841f975375ba5b, type: 3}
+  - {fileID: 7676532028838564824, guid: 46c8fd92bd57859449703118da66b33e, type: 3}
+  - {fileID: 7676532028838564824, guid: 6c02f3392ad9fd444b8f6ba07e3fa59f, type: 3}
+  cardTexture: {fileID: 2800000, guid: ba94d15aba44d534e983d6dbd6bb5ae7, type: 3}
+  cardBackTexture: {fileID: 2800000, guid: 4fee8ea07de7aa34097096f53a4d8ada, type: 3}
+  numbers: {fileID: 11400000, guid: cbc26783a5e1d9b4888d283ad59f4892, type: 2}
+  useCourt: 1
