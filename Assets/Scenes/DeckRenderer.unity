@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a448fb9e016c5af4aadaf0b14e62322d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardBackPrefab: {fileID: 1964576726947598062, guid: 4bf2bd4051f65aa4eb3bd8d50c809699, type: 3}
 --- !u!223 &673765754
 Canvas:
   m_ObjectHideFlags: 0

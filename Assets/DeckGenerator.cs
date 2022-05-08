@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor.SceneManagement;
 
 public class DeckGenerator : MonoBehaviour
 {
+    public GameObject cardBackPrefab;
     public void GenerateDeck(DeckOptions options, DeckRenderer deckRenderer)
     {
         // Clear children
@@ -15,7 +17,12 @@ public class DeckGenerator : MonoBehaviour
         Vector2Int size = getBestRect(numCards);
 
         deckRenderer.ResizeToFit(size);
-        
+
+        void placeCard(RectTransform rt, int xIndex, int yIndex)
+        {
+            rt.anchoredPosition = new Vector2((xIndex - size.x / 2f) * 500, (size.y / 2f - yIndex) * 700);
+        }
+
         for (int suitIndex = 0; suitIndex < options.suits.Length; suitIndex++)
         {
             for (int templateIndex = 0; templateIndex < options.cardTemplates.Length; templateIndex++)
@@ -28,9 +35,15 @@ public class DeckGenerator : MonoBehaviour
                 int x = cardNum % size.x;
                 int y = cardNum / size.x;
 
-                newCard.anchoredPosition = new Vector2((x-size.x/2f) * 500, (y-size.y/2f) * 700);
+                placeCard(newCard, x, y);
             }
         }
+
+        RectTransform cardBack = Instantiate(cardBackPrefab, transform).GetComponent<RectTransform>();
+        cardBack.GetComponent<RawImage>().texture = options.cardBackTexture;
+        int x2 = numCards % size.x;
+        int y2 = numCards / size.x;
+        placeCard(cardBack, x2, y2);
     }
 
     Vector2Int getBestRect(int numCards)
