@@ -10,8 +10,12 @@ public class CardPile : MonoBehaviour
 
     List<Card> cards;
 
+    ScoreCounter score;
+
     void Start()
     {
+        score = GameObject.FindGameObjectWithTag("ScoreCounter").GetComponent<ScoreCounter>();
+        score.AddDeck();
         cards = new List<Card>();
 
         for (int i = 0; i < deck.cards.Length; i++)
@@ -46,12 +50,16 @@ public class CardPile : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (cards.Count == 0) return;
+
         Card card = cards[0];
         cards.RemoveAt(0);
-        card.Play();
+        score.PlayCard(card);
         Destroy(card.gameObject);
 
         if (cards.Count > 0)
             cards[0].Flip();
+        else
+            score.RemoveDeck();
     }
 }

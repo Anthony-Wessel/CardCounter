@@ -19,9 +19,4 @@ public class Card : MonoBehaviour
         sprite.enabled = !sprite.enabled;
         backSprite.enabled = !backSprite.enabled;
     }
-
-    public void Play()
-    {
-        GameObject.FindGameObjectWithTag("ScoreCounter").GetComponent<ScoreCounter>().PlayCard(this);
-    }
 }
