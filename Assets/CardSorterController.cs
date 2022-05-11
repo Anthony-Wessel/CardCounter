@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CardSorterController : GameController
 {
-    List<Card> cards;
-
     protected override void Lose()
     {
         print("You lose!");
@@ -21,7 +19,7 @@ public class CardSorterController : GameController
         cards = new List<Card>();
     }
 
-    public void AddCard(Card card)
+    public override void AddCard(Card card)
     {
         card.OnClick = Play;
         for (int i = 0; i < cards.Count; i++)

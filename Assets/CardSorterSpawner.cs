@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardSpawner : MonoBehaviour
+public class CardSorterSpawner : MonoBehaviour
 {
     public int rows, columns;
     public bool flip;

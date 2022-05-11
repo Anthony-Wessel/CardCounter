@@ -164,11 +164,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 181664430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3cee7ba8b32eea42b7f77b1126b1bff, type: 3}
+  m_Script: {fileID: 11500000, guid: ee53890bb5cc2614f95ba590769a486a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 4
+  rows: 3
   columns: 4
+  flip: 1
   CardPrefab: {fileID: 3996772079793793762, guid: c9c0ad1b33242854da248cfa042a1d00, type: 3}
   deck: {fileID: 11400000, guid: 42c16fa84cc724b48a660b6a3adf670b, type: 2}
 --- !u!1 &302904668
@@ -180,14 +181,26 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 302904670}
-  - component: {fileID: 302904671}
+  - component: {fileID: 302904669}
   m_Layer: 0
-  m_Name: CardMatcherController
+  m_Name: CardSorterController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &302904669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302904668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37969fa765e08540af663f532d7f11a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &302904670
 Transform:
   m_ObjectHideFlags: 0
@@ -203,19 +216,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &302904671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302904668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10004a5398195754c82035f37ca75d1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cards: []
 --- !u!1 &399927775
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121cea6ec5ce56c4eaf120d22aaee0f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minHeight: 29.5
+  minHeight: 22.5
   minWidth: 21.5
 --- !u!1 &751034453
 GameObject:

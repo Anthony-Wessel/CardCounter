@@ -2,9 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameController : MonoBehaviour
+public class GameController : MonoBehaviour
 {
-    protected abstract void Win();
-    protected abstract void Lose();
+    public List<Card> cards;
+    protected virtual void Win()
+    {
 
+    }
+    protected virtual void Lose()
+    {
+
+    }
+
+    public virtual void AddCard(Card card)
+    {
+        cards.Add(card);
+    }
 }
