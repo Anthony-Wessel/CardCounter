@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [HideInInspector]
     public List<Card> cards;
     protected virtual void Win()
     {

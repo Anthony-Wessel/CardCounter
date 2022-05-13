@@ -23,6 +23,7 @@ public class CardMatcherController : GameController
     public void Play(Card card)
     {
         if (paused) return;
+        if (selectedCard == card) return;
 
         if (selectedCard == null)
         {
@@ -40,23 +41,36 @@ public class CardMatcherController : GameController
     IEnumerator checkCards(Card card)
     {
         paused = true;
+        bool correct = card.value == selectedCard.value;
 
-        yield return new WaitForSeconds(1f);
-        
-        if (card.value == selectedCard.value)
+        if (correct)
         {
-            Destroy(card.gameObject);
-            Destroy(selectedCard.gameObject);
+            GameObject selectedCardObj = selectedCard.gameObject;
+            GameObject cardObj = card.gameObject;
+            Destroy(card);
+            Destroy(selectedCard);
+
+            paused = false;
+            selectedCard = null;
             cardCount -= 2;
             if (cardCount == 0) Win();
+
+            // TODO: destroy colliders?
+
+            yield return new WaitForSeconds(0.5f);
+
+            Destroy(cardObj);
+            Destroy(selectedCardObj);
         }
         else
         {
+            yield return new WaitForSeconds(0.5f);
+
             card.Flip();
             selectedCard.Flip();
-        }
 
-        selectedCard = null;
-        paused = false;
+            selectedCard = null;
+            paused = false;
+        }
     }
 }
