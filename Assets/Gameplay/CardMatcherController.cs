@@ -47,8 +47,8 @@ public class CardMatcherController : GameController
         {
             GameObject selectedCardObj = selectedCard.gameObject;
             GameObject cardObj = card.gameObject;
-            Destroy(card);
-            Destroy(selectedCard);
+            Destroy(card.GetComponent<BoxCollider2D>());
+            Destroy(selectedCard.GetComponent<BoxCollider2D>());
 
             paused = false;
             selectedCard = null;
