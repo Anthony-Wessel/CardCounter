@@ -5,27 +5,29 @@ using UnityEngine.Rendering;
 
 public class CardPile : MonoBehaviour
 {
-    public Deck deck;
-    public GameObject cardPrefab;
-
     List<Card> cards;
-
     CardCounterController score;
 
-    void Start()
+    void Awake()
     {
         score = GameObject.FindGameObjectWithTag("ScoreCounter").GetComponent<CardCounterController>();
-        score.AddDeck();
-        cards = new List<Card>();
+    }
 
-        for (int i = 0; i < deck.cards.Length; i++)
+    public void AddCards(List<Card> cardsToAdd)
+    {
+        cards = cardsToAdd;
+
+        Shuffle(0, cards.Count);
+
+        for (int i = 0; i < cards.Count; i++)
         {
-            Card newCard = Instantiate(cardPrefab, transform).GetComponent<Card>();
-            newCard.Init(deck.cards[i], deck.cardBack, (i < deck.cards.Length/2 ? -1 : 1) * ((i % 13) + 1));
-            cards.Add(newCard);
-        }
+            Card c = cards[i];
 
-        BalancedShuffle();
+            c.OnClick = PlayCard;
+            c.transform.position = transform.position;
+            c.transform.parent = transform;
+            c.GetComponent<SortingGroup>().sortingOrder = -i;
+        }
 
         cards[0].Flip();
     }
@@ -64,7 +66,7 @@ public class CardPile : MonoBehaviour
         cards[cards.Count - 1].GetComponent<SortingGroup>().sortingOrder = -(cards.Count - 1);
     }
 
-    public void OnMouseDown()
+    public void PlayCard(Card playedCard)
     {
         if (cards.Count == 0) return;
 
