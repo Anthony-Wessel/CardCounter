@@ -10,11 +10,11 @@ public class CardPile : MonoBehaviour
 
     List<Card> cards;
 
-    ScoreCounter score;
+    CardCounterController score;
 
     void Start()
     {
-        score = GameObject.FindGameObjectWithTag("ScoreCounter").GetComponent<ScoreCounter>();
+        score = GameObject.FindGameObjectWithTag("ScoreCounter").GetComponent<CardCounterController>();
         score.AddDeck();
         cards = new List<Card>();
 

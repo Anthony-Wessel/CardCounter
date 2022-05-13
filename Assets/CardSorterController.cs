@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class CardSorterController : GameController
 {
-    protected override void Lose()
-    {
-        print("You lose!");
-    }
-
-    protected override void Win()
-    {
-        print("You win!");
-    }
-
     void Awake()
     {
         cards = new List<Card>();

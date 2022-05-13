@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ScoreCounter : MonoBehaviour
+public class CardCounterController : GameController
 {
     public int value;
 
     public int min, max;
     int decksRemaining;
 
-    public EndPanel endPanel;
 
     private void Start()
     {
@@ -23,7 +22,7 @@ public class ScoreCounter : MonoBehaviour
         updateScoreText();
         if (value < min || value > max)
         {
-            endPanel.Show(false);
+            Lose();
         }
     }
 
@@ -39,6 +38,6 @@ public class ScoreCounter : MonoBehaviour
     public void RemoveDeck()
     {
         if (--decksRemaining == 0)
-            endPanel.Show(true);
+            Lose();
     }
 }
