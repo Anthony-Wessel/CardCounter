@@ -30,7 +30,7 @@ public class CardCounterController : GameController
             for (int j = 0; j < 3; j++)
             {
                 int swapIndex = Random.Range(j, 4);
-                swap(j * i, swapIndex * i);
+                cards.swap(j * i, swapIndex * i);
             }
         }
 
@@ -40,13 +40,6 @@ public class CardCounterController : GameController
         }
 
         decksRemaining = piles.Length;
-    }
-
-    void swap(int x, int y)
-    {
-        Card c = cards[x];
-        cards[x] = cards[y];
-        cards[y] = c;
     }
 
     public void PlayCard(Card c)

@@ -12,7 +12,6 @@ public class CardSorterSpawner : MonoBehaviour
 
     List<Card> cards;
 
-
     void Start()
     {
         CardSorterController controller = FindObjectOfType<CardSorterController>();

@@ -17,7 +17,7 @@ public class CardPile : MonoBehaviour
     {
         cards = cardsToAdd;
 
-        Shuffle(0, cards.Count);
+        cards.Shuffle();
 
         for (int i = 0; i < cards.Count; i++)
         {
@@ -30,40 +30,6 @@ public class CardPile : MonoBehaviour
         }
 
         cards[0].Flip();
-    }
-
-    void swap(int x, int y)
-    {
-        Card c = cards[x];
-        cards[x] = cards[y];
-        cards[y] = c;
-    }
-
-    void Shuffle(int start, int endExclusive)
-    {
-        for (int i = start; i < endExclusive; i++)
-        {
-            int random = Random.Range(i, endExclusive);
-            swap(i, random);
-        }
-    }
-
-    void BalancedShuffle()
-    {
-        Shuffle(0, cards.Count / 2);
-        Shuffle(cards.Count / 2, cards.Count);
-
-        for (int i = 0; i < cards.Count/2; i++)
-        {
-            if (i % 2 == 0) swap(i, cards.Count / 2 + i);
-        }
-
-        for (int i = 1; i < cards.Count; i++)
-        {
-            if (Random.Range(0f, 1f) < 0.25f) swap(i - 1, i);
-            cards[i - 1].GetComponent<SortingGroup>().sortingOrder = -(i - 1);
-        }
-        cards[cards.Count - 1].GetComponent<SortingGroup>().sortingOrder = -(cards.Count - 1);
     }
 
     public void PlayCard(Card playedCard)

@@ -32,7 +32,8 @@ public class BlackjackController : GameController
         }
         state = BlackjackState.Normal;
 
-        Shuffle(0, 52);
+        cards.Shuffle();
+
         dealCard(playerHand);
         dealCard(dealerHand);
     }
@@ -94,21 +95,5 @@ public class BlackjackController : GameController
         state = BlackjackState.Over;
         FindObjectOfType<EndPanel>().Show(playerHand.Score > dealerHand.Score);
         // TODO: Account for draws
-    }
-
-    void swap(int x, int y)
-    {
-        Card c = cards[x];
-        cards[x] = cards[y];
-        cards[y] = c;
-    }
-
-    void Shuffle(int start, int endExclusive)
-    {
-        for (int i = start; i < endExclusive; i++)
-        {
-            int random = Random.Range(i, endExclusive);
-            swap(i, random);
-        }
     }
 }
