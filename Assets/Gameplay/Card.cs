@@ -20,6 +20,13 @@ public class Card : MonoBehaviour
         faceUp = false;
     }
 
+    public void OnMouseDown()
+    {
+        if (OnClick != null) OnClick.Invoke(this);
+    }
+
+    #region Flip
+
     public void Flip(bool faceUp)
     {
         if (faceUp != this.faceUp) Flip();
@@ -30,11 +37,6 @@ public class Card : MonoBehaviour
         StartCoroutine(FlipAnim(0.2f));
     }
 
-    public void OnMouseDown()
-    {
-        if (OnClick != null) OnClick.Invoke(this);
-    }
-
     IEnumerator FlipAnim(float duration)
     {
         Quaternion original = transform.rotation;
@@ -42,9 +44,9 @@ public class Card : MonoBehaviour
 
         // Rotate to invisible
         float startTime = Time.time;
-        while (Time.time - startTime < duration/2)
+        while (Time.time - startTime < duration / 2)
         {
-            transform.rotation = Quaternion.Lerp(original, target, (Time.time - startTime) / (duration/2));
+            transform.rotation = Quaternion.Lerp(original, target, (Time.time - startTime) / (duration / 2));
             yield return null;
         }
 
@@ -62,4 +64,87 @@ public class Card : MonoBehaviour
 
         transform.rotation = original;
     }
+
+    #endregion
+
+    #region Fade
+
+    public void FadeOut()
+    {
+        StartCoroutine(FadeAnim(0.25f));
+    }
+
+    IEnumerator FadeAnim(float duration)
+    {
+        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+
+        float startTime = Time.time;
+        while(Time.time - startTime < duration)
+        {
+            Color c = sr.color;
+            c.a = 1 - (Time.time - startTime) / duration;
+            sr.color = c;
+
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
+
+    #endregion
+
+    #region Move
+
+    public void Move(Vector3 position)
+    {
+        StartCoroutine(MoveAnim(position, 0.25f));
+    }
+
+    IEnumerator MoveAnim(Vector3 targetPosition, float duration)
+    {
+        Vector3 originalPosition = transform.position;
+        float startTime = Time.time;
+
+        while (Time.time - startTime < duration)
+        {
+            float progress = (Time.time - startTime) / duration;
+            transform.position = Vector3.Lerp(originalPosition, targetPosition, progress);
+
+            yield return null;
+        }
+
+        transform.position = targetPosition;
+    }
+
+    #endregion
+
+    #region Shake
+
+    public void Shake()
+    {
+        StartCoroutine(ShakeAnim(0.25f));
+    }
+
+    IEnumerator ShakeAnim(float duration)
+    {
+        Transform spriteTransform = transform.GetChild(0);
+        float startTime = Time.time;
+
+        float period = 3*Mathf.PI;
+        float amplitude = 10;
+
+        while (Time.time - startTime < duration)
+        {
+            float progress = (Time.time - startTime)/duration;
+            float value = amplitude * Mathf.Sin((period * progress));
+
+            spriteTransform.localRotation = Quaternion.Euler(0, 0, value);
+
+            yield return null;
+        }
+
+        spriteTransform.localRotation = Quaternion.identity;
+    }
+
+    #endregion
 }

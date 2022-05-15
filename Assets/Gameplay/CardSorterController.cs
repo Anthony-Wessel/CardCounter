@@ -45,7 +45,11 @@ public class CardSorterController : GameController
         if (card == cards[0])
         {
             cards.RemoveAt(0);
-            Destroy(card.gameObject);
+            card.FadeOut();
+        }
+        else
+        {
+            card.Shake();
         }
 
         if (cards.Count == 0) Win();

@@ -37,7 +37,8 @@ public class Hand : MonoBehaviour
             float pos = i - offset;
             if (dealer) pos *= -1;
 
-            heldCards[i].transform.localPosition = new Vector3(pos * 5.5f, 0);
+            Vector3 localPosition = new Vector3(pos * 5.5f, 0);
+            heldCards[i].Move(transform.position + localPosition);
         }
     }
 }

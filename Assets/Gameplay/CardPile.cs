@@ -39,7 +39,9 @@ public class CardPile : MonoBehaviour
         Card card = cards[0];
         cards.RemoveAt(0);
         score.PlayCard(card);
-        Destroy(card.gameObject);
+
+        card.Move(score.transform.position);
+        card.FadeOut();
 
         if (cards.Count > 0)
             cards[0].Flip();

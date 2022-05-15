@@ -31,7 +31,7 @@ public class CardMatcherController : GameController
 
         for (int i = 0; i < numPairs; i++)
         {
-            int index = Random.Range(0, 4) * indices[i];
+            int index = (Random.Range(0, 4) * 13) + indices[i];
 
             Card cardA = Instantiate(CardPrefab, transform).GetComponent<Card>();
             Card cardB = Instantiate(CardPrefab, transform).GetComponent<Card>();
@@ -71,8 +71,8 @@ public class CardMatcherController : GameController
 
         if (correct)
         {
-            GameObject selectedCardObj = selectedCard.gameObject;
-            GameObject cardObj = card.gameObject;
+            Card selectedCardObj = selectedCard;
+            Card cardObj = card;
             Destroy(card.GetComponent<BoxCollider2D>());
             Destroy(selectedCard.GetComponent<BoxCollider2D>());
 
@@ -81,15 +81,15 @@ public class CardMatcherController : GameController
             remainingCardCount -= 2;
             if (remainingCardCount == 0) Win();
 
-            // TODO: destroy colliders?
-
             yield return new WaitForSeconds(0.5f);
 
-            Destroy(cardObj);
-            Destroy(selectedCardObj);
+            cardObj.FadeOut();
+            selectedCardObj.FadeOut();
         }
         else
         {
+            card.Shake();
+            selectedCard.Shake();
             yield return new WaitForSeconds(0.5f);
 
             card.Flip();

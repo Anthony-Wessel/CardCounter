@@ -64,6 +64,6 @@ public class CardCounterController : GameController
     public void RemoveDeck()
     {
         if (--decksRemaining == 0)
-            Lose();
+            Win();
     }
 }

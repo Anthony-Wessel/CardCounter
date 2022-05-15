@@ -49,7 +49,7 @@ public class BlackjackController : GameController
                 dealCard(playerHand);
                 dealerTurn = true;
             }
-            else if (Input.GetKeyDown(KeyCode.End))
+            else if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 if (state == BlackjackState.DealerStand)
                     CalculateEnd();
