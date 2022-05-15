@@ -4,12 +4,12 @@ using UnityEngine;
 
 public static class CardExtensions
 {
-    public static void Shuffle(this List<Card> cards)
+    public static void Shuffle<T>(this List<T> cards)
     {
         cards.Shuffle(0, cards.Count);
     }
 
-    public static void Shuffle(this List<Card> cards, int startInclusive, int endExclusive)
+    public static void Shuffle<T>(this List<T> cards, int startInclusive, int endExclusive)
     {
         for (int i = startInclusive; i < endExclusive; i++)
         {
@@ -18,7 +18,7 @@ public static class CardExtensions
         }
     }
 
-    public static void BalancedShuffle(this List<Card> cards)
+    public static void BalancedShuffle<T>(this List<T> cards)
     {
         cards.Shuffle(0, cards.Count / 2);
         cards.Shuffle(cards.Count / 2, cards.Count);
@@ -34,9 +34,9 @@ public static class CardExtensions
         }
     }
 
-    public static void swap(this List<Card> cards, int x, int y)
+    public static void swap<T>(this List<T> cards, int x, int y)
     {
-        Card c = cards[x];
+        T c = cards[x];
         cards[x] = cards[y];
         cards[y] = c;
     }
