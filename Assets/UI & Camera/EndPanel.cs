@@ -23,7 +23,7 @@ public class EndPanel : MonoBehaviour
 
     public void LoadGameSelect()
     {
-        Debug.LogWarning("LoadGameSelect not implemented yet");
+        SceneManager.LoadScene(0);
     }
 
     public void Show(EndState state)
