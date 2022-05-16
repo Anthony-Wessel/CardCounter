@@ -8,7 +8,6 @@ public class BlackjackController : GameController
     public Deck deck;
 
     public Hand playerHand, dealerHand;
-    bool dealerTurn;
 
     BlackjackState state;
     enum BlackjackState
@@ -34,49 +33,41 @@ public class BlackjackController : GameController
 
         cards.Shuffle();
 
+        if (Random.Range(0, 2) == 1) dealCard(dealerHand);
         dealCard(playerHand);
         dealCard(dealerHand);
     }
 
-    private void Update()
+    public void Hit()
     {
-        if (state == BlackjackState.Over) return;
+        dealCard(playerHand);
+        dealerTurn();
+    }
+    public void Stand()
+    {
+        if (state == BlackjackState.DealerStand)
+            CalculateEnd();
+        else
+            state = BlackjackState.PlayerStand;
 
-        if (state != BlackjackState.PlayerStand)
+        dealerTurn();
+    }
+
+    void dealerTurn()
+    {
+        if (state == BlackjackState.DealerStand) return;
+
+        if (dealerHand.Score < playerHand.Score || dealerHand.Score < 15)
+            dealCard(dealerHand);
+        else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                dealCard(playerHand);
-                dealerTurn = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                if (state == BlackjackState.DealerStand)
-                    CalculateEnd();
-                else
-                    state = BlackjackState.PlayerStand;
-            }
+            if (state == BlackjackState.PlayerStand)
+                CalculateEnd();
+            else
+                state = BlackjackState.DealerStand;
         }
 
-        if (state == BlackjackState.Over) return;
-
-        if (state != BlackjackState.DealerStand)
-        {
-            if (dealerTurn || state == BlackjackState.PlayerStand)
-            {
-                if (dealerHand.Score < playerHand.Score || dealerHand.Score < 15)
-                    dealCard(dealerHand);
-                else
-                {
-                    if (state == BlackjackState.PlayerStand)
-                        CalculateEnd();
-                    else
-                        state = BlackjackState.DealerStand;
-                }
-
-                dealerTurn = false;
-            }
-        }
+        if (state == BlackjackState.PlayerStand) dealerTurn();
     }
 
     void dealCard(Hand hand)
