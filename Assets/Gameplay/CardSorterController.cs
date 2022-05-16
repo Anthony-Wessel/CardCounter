@@ -6,19 +6,19 @@ public class CardSorterController : GameController
 {
     public Deck deck;
     public GameObject CardPrefab;
-    public int cardCount;
+    public int initialCardCount;
 
     void Awake()
     {
         cards = new List<Card>();
     }
 
-    void Start()
+    protected override void LoadStage(int stage)
     {
         List<int> indices = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
         indices.Shuffle();
 
-        for (int i = 0; i < cardCount; i++)
+        for (int i = 0; i < initialCardCount+stage; i++)
         {
             Card newCard = Instantiate(CardPrefab, transform).GetComponent<Card>();
             int suitIndex = Random.Range(0, 4);

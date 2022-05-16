@@ -6,7 +6,6 @@ public class CardPlacer : MonoBehaviour
 {
     public void PlaceCards(List<Card> cards)
     {
-        print(cards.Count);
         int rows = Mathf.CeilToInt(Mathf.Sqrt(cards.Count));
         int columns = Mathf.CeilToInt((float)cards.Count / rows);
 

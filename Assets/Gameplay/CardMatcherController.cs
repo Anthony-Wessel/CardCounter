@@ -6,7 +6,7 @@ public class CardMatcherController : GameController
 {
     public Deck deck;
     public GameObject CardPrefab;
-    public int numPairs;
+    public int initialNumPairs;
 
     Card selectedCard;
     bool paused;
@@ -24,12 +24,12 @@ public class CardMatcherController : GameController
         remainingCardCount++;
     }
 
-    void Start()
+    protected override void LoadStage(int stage)
     {
         List<int> indices = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
         indices.Shuffle();
 
-        for (int i = 0; i < numPairs; i++)
+        for (int i = 0; i < initialNumPairs + stage; i++)
         {
             int index = (Random.Range(0, 4) * 13) + indices[i];
 
@@ -75,6 +75,9 @@ public class CardMatcherController : GameController
             Card cardObj = card;
             Destroy(card.GetComponent<BoxCollider2D>());
             Destroy(selectedCard.GetComponent<BoxCollider2D>());
+
+            cards.Remove(card);
+            cards.Remove(selectedCard);
 
             paused = false;
             selectedCard = null;

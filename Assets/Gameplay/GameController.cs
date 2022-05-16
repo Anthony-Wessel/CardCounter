@@ -6,9 +6,31 @@ public class GameController : MonoBehaviour
 {
     [HideInInspector]
     public List<Card> cards;
+
+    public int currentStage;
+    public int maxStage;
+
+    void Start()
+    {
+        LoadStage(0);
+    }
+
+    protected virtual void LoadStage(int stage)
+    {
+
+    }
+
+    void loadNextStage()
+    {
+        LoadStage(++currentStage);
+    }
+
     protected virtual void Win()
     {
-        FindObjectOfType<EndPanel>().Show(true);
+        if (currentStage < maxStage)
+            Invoke("loadNextStage", 1f);
+        else
+            FindObjectOfType<EndPanel>().Show(true);
     }
     protected virtual void Lose()
     {

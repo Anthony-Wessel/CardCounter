@@ -154,9 +154,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards: []
+  currentStage: 0
+  maxStage: 2
   deck: {fileID: 11400000, guid: 42c16fa84cc724b48a660b6a3adf670b, type: 2}
   CardPrefab: {fileID: 3996772079793793762, guid: c9c0ad1b33242854da248cfa042a1d00, type: 3}
-  cardCount: 8
+  initialCardCount: 5
 --- !u!4 &302904670
 Transform:
   m_ObjectHideFlags: 0
