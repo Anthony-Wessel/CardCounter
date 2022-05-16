@@ -93,7 +93,7 @@ public class CardMatcherController : GameController
         {
             card.Shake();
             selectedCard.Shake();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
 
             card.Flip();
             selectedCard.Flip();
