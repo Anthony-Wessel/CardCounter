@@ -7,7 +7,12 @@ using TMPro;
 
 public class EndPanel : MonoBehaviour
 {
-
+    public enum EndState
+    {
+        Win,
+        Lose,
+        Draw
+    }
     public TextMeshProUGUI title;
     public GameObject panel;
 
@@ -21,9 +26,24 @@ public class EndPanel : MonoBehaviour
         Debug.LogWarning("LoadGameSelect not implemented yet");
     }
 
-    public void Show(bool win)
+    public void Show(EndState state)
     {
-        title.text = win ? "You win!" : "You lose!";
+        switch (state)
+        {
+            case EndState.Win:
+                title.text = "You win!";
+                break;
+            case EndState.Lose:
+                title.text = "You lose!";
+                break;
+            case EndState.Draw:
+                title.text = "Draw";
+                break;
+            default:
+                title.text = "EndState error";
+                break;
+        }
+
         gameObject.SetActive(true);
         StartCoroutine(FadeIn());
     }

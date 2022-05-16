@@ -83,9 +83,9 @@ public class BlackjackController : GameController
     {
         if (hand.AddCard(cards[0]))
         {
-            print(hand.name + " busted");
             state = BlackjackState.Over;
-            FindObjectOfType<EndPanel>().Show(hand == dealerHand);
+            if (hand == dealerHand) Win();
+            else Lose();
         }
         cards.RemoveAt(0);
     }
@@ -93,7 +93,8 @@ public class BlackjackController : GameController
     void CalculateEnd()
     {
         state = BlackjackState.Over;
-        FindObjectOfType<EndPanel>().Show(playerHand.Score > dealerHand.Score);
-        // TODO: Account for draws
+        if (playerHand.Score > dealerHand.Score) Win();
+        else if (playerHand.Score < dealerHand.Score) Lose();
+        else Draw();
     }
 }

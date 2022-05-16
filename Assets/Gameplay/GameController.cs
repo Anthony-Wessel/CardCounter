@@ -25,16 +25,21 @@ public class GameController : MonoBehaviour
         LoadStage(++currentStage);
     }
 
-    protected virtual void Win()
+    protected void Win()
     {
         if (currentStage < maxStage)
             Invoke("loadNextStage", 1f);
         else
-            FindObjectOfType<EndPanel>().Show(true);
+            FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Win);
     }
-    protected virtual void Lose()
+    protected void Lose()
     {
-        FindObjectOfType<EndPanel>().Show(false);
+        FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Lose);
+    }
+
+    protected void Draw()
+    {
+        FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Draw);
     }
 
     public virtual void AddCard(Card card)
