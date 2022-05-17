@@ -17,15 +17,28 @@ public class GameController : MonoBehaviour
     string lastTime;
     float startTime;
 
+    [Header("Wager variables")]
+    public int minWager;
+    public int maxWager;
+    int selectedWager;
+
     void Start()
     {
+        ShowWagerPopup();
+    }
+
+    void StartGame()
+    {
+        print(GoldManager.Gold);
+        GoldManager.RemoveGold(selectedWager);
+        print(GoldManager.Gold);
         LoadStage(0);
         if (maxTimeSeconds > 0) StartTimer();
     }
 
     void Update()
     {
-        if (secondsRemaining() <= 0) Lose();
+        if (timerActive && secondsRemaining() <= 0) Lose();
     }
 
     public virtual void AddCard(Card card)
@@ -57,8 +70,10 @@ public class GameController : MonoBehaviour
         else
         {
             FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Win);
+            GoldManager.AddGold(selectedWager * 2);
             StopTimer();
-        }  
+        }
+        print(GoldManager.Gold);
     }
     protected void Lose()
     {
@@ -70,7 +85,7 @@ public class GameController : MonoBehaviour
     protected void Draw()
     {
         FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Draw);
-
+        GoldManager.AddGold(selectedWager);
         StopTimer();
     }
 
@@ -112,6 +127,21 @@ public class GameController : MonoBehaviour
         }
         
         return lastTime;
+    }
+
+    #endregion
+
+    #region Wagers
+
+    void ShowWagerPopup()
+    {
+        FindObjectOfType<WagerPopup>().Init(minWager, Mathf.Min(maxWager, GoldManager.Gold), minWager, OnWagerConfirmed);
+    }
+
+    void OnWagerConfirmed(int selectedWager)
+    {
+        this.selectedWager = selectedWager;
+        StartGame();
     }
 
     #endregion

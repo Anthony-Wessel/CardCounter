@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GoldManager : MonoBehaviour
 {
-    public int Gold
+    public static int Gold
     {
         get
         {
@@ -16,7 +16,7 @@ public class GoldManager : MonoBehaviour
     /// Add a specific amount of gold to the total
     /// </summary>
     /// <param name="amount">amount of gold to add</param>
-    public void AddGold(int amount)
+    public static void AddGold(int amount)
     {
         PlayerPrefs.SetInt("Gold", Mathf.Min(Gold + amount, int.MaxValue));
     }
@@ -26,7 +26,7 @@ public class GoldManager : MonoBehaviour
     /// </summary>
     /// <param name="amount">amount of gold to remove</param>
     /// <returns>True if amount exceeds current gold total, False otherwise</returns>
-    public bool RemoveGold(int amount)
+    public static bool RemoveGold(int amount)
     {
         if (amount > Gold) return true;
 
