@@ -29,9 +29,7 @@ public class GameController : MonoBehaviour
 
     void StartGame()
     {
-        print(GoldManager.Gold);
         GoldManager.RemoveGold(selectedWager);
-        print(GoldManager.Gold);
         LoadStage(0);
         if (maxTimeSeconds > 0) StartTimer();
     }
@@ -73,7 +71,6 @@ public class GameController : MonoBehaviour
             GoldManager.AddGold(selectedWager * 2);
             StopTimer();
         }
-        print(GoldManager.Gold);
     }
     protected void Lose()
     {
@@ -130,6 +127,7 @@ public class GameController : MonoBehaviour
     }
 
     #endregion
+
 
     #region Wagers
 
