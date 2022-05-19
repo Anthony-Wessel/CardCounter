@@ -10,7 +10,7 @@ public class CardPile : MonoBehaviour
 
     void Awake()
     {
-        score = GameObject.FindGameObjectWithTag("ScoreCounter").GetComponent<CardCounterController>();
+        score = GetComponentInParent<CardCounterController>();
     }
 
     public void AddCards(List<Card> cardsToAdd)

@@ -8,18 +8,20 @@ public class Hand : MonoBehaviour
     public int Score { get { return score; } }
     int score;
     public bool dealer;
+    GameController controller;
 
     private void Awake()
     {
         heldCards = new List<Card>();
         score = 0;
+        controller = GetComponentInParent<GameController>();
     }
 
     public bool AddCard(Card c)
     {
         heldCards.Add(c);
         
-        if (dealer) c.transform.rotation = Quaternion.Euler(0, 0, 180);
+        if (dealer) c.transform.localRotation = Quaternion.Euler(0, 0, 180);
         c.transform.parent = transform;
         c.Flip();
 
@@ -37,7 +39,7 @@ public class Hand : MonoBehaviour
             float pos = i - offset;
             if (dealer) pos *= -1;
 
-            Vector3 localPosition = new Vector3(pos * 5.5f, 0);
+            Vector3 localPosition = new Vector3(pos * controller.CardSize.x * 1.1f, 0);
             heldCards[i].Move(transform.position + localPosition);
         }
     }

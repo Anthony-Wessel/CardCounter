@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4949461905838941431}
   - component: {fileID: 5384220965036519999}
   - component: {fileID: -7038347716439671498}
-  - component: {fileID: -8561246177406635722}
+  - component: {fileID: 3489526770524139054}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -144,29 +144,16 @@ SortingGroup:
   m_SortingLayerID: -716509265
   m_SortingLayer: 1
   m_SortingOrder: 0
---- !u!61 &-8561246177406635722
-BoxCollider2D:
+--- !u!65 &3489526770524139054
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3996772079793793762}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 7}
-  m_EdgeRadius: 0
+  m_Size: {x: 5, y: 7, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}

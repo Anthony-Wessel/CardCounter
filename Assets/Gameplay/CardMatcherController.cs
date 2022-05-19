@@ -43,7 +43,7 @@ public class CardMatcherController : GameController
         }
 
         cards.Shuffle();
-        FindObjectOfType<CardPlacer>().PlaceCards(cards);
+        FindObjectOfType<CardPlacer>().PlaceCards(cards, this);
     }
 
     public void Play(Card card)

@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class CardPlacer : MonoBehaviour
 {
-    public void PlaceCards(List<Card> cards)
+    public void PlaceCards(List<Card> cards, GameController controller)
     {
         int rows = Mathf.CeilToInt(Mathf.Sqrt(cards.Count));
         int columns = Mathf.CeilToInt((float)cards.Count / rows);
 
-        Vector3 offset = new Vector3(5.5f * (columns - 1), 7.5f * (rows - 1));
-        offset = -offset / 2;
+        Vector2 offset = new Vector3(columns/2f - 0.5f, rows/2f - 0.5f);
         
         int cardIndex = 0;
 
@@ -19,7 +18,13 @@ public class CardPlacer : MonoBehaviour
             for (int y = rows-1; y >= 0; y--)
             {
                 if (cardIndex >= cards.Count) break;
-                cards[cardIndex++].transform.position = new Vector3(5.5f * x, 7.5f * y) + offset;
+
+                Vector2 pos = new Vector2(x, y) - offset;
+
+                Vector3 localPosition = new Vector3(controller.CardSize.x * 1.1f * pos.x, controller.CardSize.y * 1.1f * pos.y);
+                
+                Vector3 targetPosition = transform.position + (transform.rotation * localPosition);
+                cards[cardIndex++].Move(targetPosition);
             }
         }
     }

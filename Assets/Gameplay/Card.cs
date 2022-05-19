@@ -39,14 +39,14 @@ public class Card : MonoBehaviour
 
     IEnumerator FlipAnim(float duration)
     {
-        Quaternion original = transform.rotation;
+        Quaternion original = transform.localRotation;
         Quaternion target = Quaternion.Euler(original.eulerAngles + (Vector3.up * 90));
 
         // Rotate to invisible
         float startTime = Time.time;
         while (Time.time - startTime < duration / 2)
         {
-            transform.rotation = Quaternion.Lerp(original, target, (Time.time - startTime) / (duration / 2));
+            transform.localRotation = Quaternion.Lerp(original, target, (Time.time - startTime) / (duration / 2));
             yield return null;
         }
 
@@ -58,11 +58,11 @@ public class Card : MonoBehaviour
         startTime = Time.time;
         while (Time.time - startTime < duration / 2)
         {
-            transform.rotation = Quaternion.Lerp(target, original, (Time.time - startTime) / (duration / 2));
+            transform.localRotation = Quaternion.Lerp(target, original, (Time.time - startTime) / (duration / 2));
             yield return null;
         }
 
-        transform.rotation = original;
+        transform.localRotation = original;
     }
 
     #endregion

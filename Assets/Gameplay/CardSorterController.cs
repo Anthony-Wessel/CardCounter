@@ -29,7 +29,7 @@ public class CardSorterController : GameController
             AddCard(newCard);
         }
 
-        FindObjectOfType<CardPlacer>().PlaceCards(cards);
+        FindObjectOfType<CardPlacer>().PlaceCards(cards, this);
 
         SortCards(cards);
     }

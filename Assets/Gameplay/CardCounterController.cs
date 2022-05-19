@@ -13,14 +13,16 @@ public class CardCounterController : GameController
     public Deck deck;
     public GameObject cardPrefab;
 
-    private void Start()
+    public TextMeshProUGUI scoreText;
+
+    protected override void LoadStage(int stage)
     {
         value = 10;
 
         CardPile[] piles = FindObjectsOfType<CardPile>();
         for (int i = 0; i < 52; i++)
         {
-            Card newCard = Instantiate(cardPrefab).GetComponent<Card>();
+            Card newCard = Instantiate(cardPrefab, transform).GetComponent<Card>();
             newCard.Init(deck.cards[i], deck.cardBack, (i < deck.cards.Length / 2 ? -1 : 1) * ((i % 13) + 1));
             cards.Add(newCard);
         }
@@ -54,7 +56,7 @@ public class CardCounterController : GameController
 
     void updateScoreText()
     {
-        GetComponent<TextMeshProUGUI>().text = value.ToString();
+        scoreText.text = value.ToString();
     }
 
     public void AddDeck()

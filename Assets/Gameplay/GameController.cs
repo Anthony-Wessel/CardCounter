@@ -22,8 +22,25 @@ public class GameController : MonoBehaviour
     public int maxWager;
     int selectedWager;
 
+    [Header("Camera variables")]
+    public float minHeight;
+    public float minWidth;
+
+    Vector2 defaultCardSize = new Vector2(5, 7);
+    public Vector2 CardSize
+    {
+        get
+        {
+            return defaultCardSize * transform.lossyScale;
+        }
+    }
+
     void Start()
     {
+        Camera cam = Camera.main;
+        float widthBasedHeight = minWidth / cam.aspect;
+        cam.orthographicSize = Mathf.Max(minHeight, widthBasedHeight) / 2 + 1;
+
         ShowWagerPopup();
     }
 
