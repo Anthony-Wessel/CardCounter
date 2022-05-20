@@ -22,10 +22,6 @@ public class GameController : MonoBehaviour
     public int maxWager;
     int selectedWager;
 
-    [Header("Camera variables")]
-    public float minHeight;
-    public float minWidth;
-
     Vector2 defaultCardSize = new Vector2(5, 7);
     public Vector2 CardSize
     {
@@ -35,17 +31,33 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Awake()
     {
-        Camera cam = Camera.main;
-        float widthBasedHeight = minWidth / cam.aspect;
-        cam.orthographicSize = Mathf.Max(minHeight, widthBasedHeight) / 2 + 1;
+        selectedWager = -1;
+    }
+
+    public void Restart()
+    {
+        ClearBoard();
 
         ShowWagerPopup();
     }
 
+    protected virtual void ClearBoard()
+    {
+        currentStage = 0;
+
+        cards.Clear();
+        Card[] cardObjs = FindObjectsOfType<Card>();
+        foreach (Card card in cardObjs)
+        {
+            Destroy(card.gameObject);
+        }
+    }    
+
     void StartGame()
     {
+        print(cards.Count);
         GoldManager.RemoveGold(selectedWager);
         LoadStage(0);
         if (maxTimeSeconds > 0) StartTimer();
@@ -150,7 +162,7 @@ public class GameController : MonoBehaviour
 
     void ShowWagerPopup()
     {
-        FindObjectOfType<WagerPopup>().Init(minWager, Mathf.Min(maxWager, GoldManager.Gold), minWager, OnWagerConfirmed);
+        FindObjectOfType<WagerPopup>().Init(minWager, Mathf.Min(maxWager, GoldManager.Gold), selectedWager == -1 ? minWager : selectedWager, OnWagerConfirmed);
     }
 
     void OnWagerConfirmed(int selectedWager)

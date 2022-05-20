@@ -27,7 +27,11 @@ public class WagerPopup : MonoBehaviour
 
         slider.onValueChanged.AddListener((x) => currentWagerText.text = slider.value.ToString());
 
-        confirmButton.onClick.AddListener(()=> { onWagerConfirmed.Invoke(getSelectedWager()); SetVisible(false); });
+        confirmButton.onClick.AddListener(()=> {
+            onWagerConfirmed.Invoke(getSelectedWager());
+            SetVisible(false);
+            confirmButton.onClick.RemoveAllListeners();
+        });
 
         SetVisible(true);
     }

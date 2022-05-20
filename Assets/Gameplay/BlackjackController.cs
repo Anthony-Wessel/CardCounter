@@ -18,7 +18,15 @@ public class BlackjackController : GameController
         Over
     }
 
-    void Start()
+    protected override void ClearBoard()
+    {
+        playerHand.Clear();
+        dealerHand.Clear();
+
+        base.ClearBoard();
+    }
+
+    protected override void LoadStage(int stage)
     {
         for (int i = 0; i < 52; i++)
         {
@@ -46,7 +54,10 @@ public class BlackjackController : GameController
     public void Stand()
     {
         if (state == BlackjackState.DealerStand)
+        {
             CalculateEnd();
+            return;
+        }
         else
             state = BlackjackState.PlayerStand;
 
@@ -55,7 +66,7 @@ public class BlackjackController : GameController
 
     void dealerTurn()
     {
-        if (state == BlackjackState.DealerStand) return;
+        if (state == BlackjackState.DealerStand || state == BlackjackState.Over) return;
 
         if (dealerHand.Score < playerHand.Score || dealerHand.Score < 15)
             dealCard(dealerHand);

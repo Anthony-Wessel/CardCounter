@@ -15,6 +15,21 @@ public class CardCounterController : GameController
 
     public TextMeshProUGUI scoreText;
 
+    protected override void ClearBoard()
+    {
+        CardPile[] piles = FindObjectsOfType<CardPile>();
+        print(piles.Length);
+        foreach (CardPile pile in piles)
+        {
+            pile.Clear();
+        }
+
+        value = 10;
+        updateScoreText();
+
+        base.ClearBoard();
+    }
+
     protected override void LoadStage(int stage)
     {
         value = 10;

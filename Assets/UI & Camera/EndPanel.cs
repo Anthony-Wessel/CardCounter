@@ -18,12 +18,14 @@ public class EndPanel : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartCoroutine(Fade(false));
+        FindObjectOfType<GameController>().Restart();
     }
 
     public void LoadGameSelect()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(Fade(false));
+        FindObjectOfType<CameraController>().LoadMainMenu();
     }
 
     public void Show(EndState state)
@@ -45,11 +47,13 @@ public class EndPanel : MonoBehaviour
         }
 
         gameObject.SetActive(true);
-        StartCoroutine(FadeIn());
+        StartCoroutine(Fade(true));
     }
 
-    IEnumerator FadeIn()
+    IEnumerator Fade(bool fadeIn) // false means fade out
     {
+        if (!fadeIn) panel.SetActive(false);
+
         Image background = GetComponent<Image>();
 
         float startTime = Time.realtimeSinceStartup;
@@ -63,12 +67,19 @@ public class EndPanel : MonoBehaviour
 
         while (Time.realtimeSinceStartup - startTime < 0.5f)
         {
-            setAlpha((Time.realtimeSinceStartup - startTime) * 1.5f);
+            float alpha = (Time.realtimeSinceStartup - startTime) * 1.5f;
+            if (fadeIn)
+                setAlpha(alpha);
+            else
+                setAlpha(0.75f - alpha);
             yield return null;
         }
 
-        setAlpha(0.75f);
+        if (fadeIn)
+            setAlpha(0.75f);
+        else
+            setAlpha(0);
 
-        panel.SetActive(true);
+        if (fadeIn) panel.SetActive(true);
     }
 }

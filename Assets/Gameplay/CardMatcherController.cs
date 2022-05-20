@@ -17,6 +17,15 @@ public class CardMatcherController : GameController
         paused = false;
     }
 
+    protected override void ClearBoard()
+    {
+        selectedCard = null;
+        paused = false;
+        remainingCardCount = 0;
+
+        base.ClearBoard();
+    }
+
     public override void AddCard(Card card)
     {
         cards.Add(card);

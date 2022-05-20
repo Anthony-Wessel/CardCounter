@@ -10,6 +10,12 @@ public class Hand : MonoBehaviour
     public bool dealer;
     GameController controller;
 
+    public void Clear()
+    {
+        score = 0;
+        heldCards.Clear();
+    }
+
     private void Awake()
     {
         heldCards = new List<Card>();

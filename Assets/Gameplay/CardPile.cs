@@ -6,11 +6,17 @@ using UnityEngine.Rendering;
 public class CardPile : MonoBehaviour
 {
     List<Card> cards;
-    CardCounterController score;
+    CardCounterController controller;
 
     void Awake()
     {
-        score = GetComponentInParent<CardCounterController>();
+        controller = GetComponentInParent<CardCounterController>();
+    }
+
+    public void Clear()
+    {
+        if (cards != null)
+            cards.Clear();
     }
 
     public void AddCards(List<Card> cardsToAdd)
@@ -38,14 +44,14 @@ public class CardPile : MonoBehaviour
 
         Card card = cards[0];
         cards.RemoveAt(0);
-        score.PlayCard(card);
+        controller.PlayCard(card);
 
-        card.Move(score.transform.position);
+        card.Move(controller.transform.position);
         card.FadeOut();
 
         if (cards.Count > 0)
             cards[0].Flip();
         else
-            score.RemoveDeck();
+            controller.RemoveDeck();
     }
 }
