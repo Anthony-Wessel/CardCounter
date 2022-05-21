@@ -1675,6 +1675,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6613358301811758676, guid: c15030a14c3b0ad4985af4638b3126ab, type: 3}
+      propertyPath: useTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613358301811758676, guid: c15030a14c3b0ad4985af4638b3126ab, type: 3}
+      propertyPath: useStages
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6613358301811758677, guid: c15030a14c3b0ad4985af4638b3126ab, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.025
@@ -2034,6 +2042,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 6797232505563088639, guid: 5b19e0f3093b76344aca5085901d9a9b, type: 3}
+      propertyPath: useTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797232505563088639, guid: 5b19e0f3093b76344aca5085901d9a9b, type: 3}
+      propertyPath: useStages
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b19e0f3093b76344aca5085901d9a9b, type: 3}
 --- !u!4 &1913601582 stripped
@@ -2299,6 +2315,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 167573331481371409, guid: 331b34b63a2711b49b289d03afa4638f, type: 3}
+      propertyPath: CardPrefab
+      value: 
+      objectReference: {fileID: 3996772079793793762, guid: c9c0ad1b33242854da248cfa042a1d00, type: 3}
     - target: {fileID: 167573331951482428, guid: 331b34b63a2711b49b289d03afa4638f, type: 3}
       propertyPath: m_Name
       value: Blackjack
@@ -2491,6 +2511,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 2205527982962894742, guid: fc3c1c351befc4d49a3009ba957f784b, type: 3}
+      propertyPath: CardPrefab
+      value: 
+      objectReference: {fileID: 3996772079793793762, guid: c9c0ad1b33242854da248cfa042a1d00, type: 3}
     - target: {fileID: 3749925940695831849, guid: fc3c1c351befc4d49a3009ba957f784b, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -8,19 +8,24 @@ public class GameController : MonoBehaviour
     public List<Card> cards;
 
     [Header("Stage variables")]
+    public bool useStages;
     public int currentStage;
     public int maxStage;
 
     [Header("Timer variables")]
+    public bool useTimer;
     public int maxTimeSeconds;
     bool timerActive;
     string lastTime;
     float startTime;
 
-    [Header("Wager variables")]
+    //[Header("Wager variables")]
     public int minWager;
     public int maxWager;
     int selectedWager;
+
+    public Deck deck;
+    public GameObject CardPrefab;
 
     Vector2 defaultCardSize = new Vector2(5, 7);
     public Vector2 CardSize

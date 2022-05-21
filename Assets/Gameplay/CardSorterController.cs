@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CardSorterController : GameController
 {
-    public Deck deck;
-    public GameObject CardPrefab;
     public int initialCardCount;
 
     void Awake()

@@ -10,9 +10,6 @@ public class CardCounterController : GameController
     public int min, max;
     int decksRemaining;
 
-    public Deck deck;
-    public GameObject cardPrefab;
-
     public TextMeshProUGUI scoreText;
 
     protected override void ClearBoard()
@@ -37,7 +34,7 @@ public class CardCounterController : GameController
         CardPile[] piles = FindObjectsOfType<CardPile>();
         for (int i = 0; i < 52; i++)
         {
-            Card newCard = Instantiate(cardPrefab, transform).GetComponent<Card>();
+            Card newCard = Instantiate(CardPrefab, transform).GetComponent<Card>();
             newCard.Init(deck.cards[i], deck.cardBack, (i < deck.cards.Length / 2 ? -1 : 1) * ((i % 13) + 1));
             cards.Add(newCard);
         }

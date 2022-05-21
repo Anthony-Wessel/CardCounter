@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BlackjackController : GameController
 {
-    public GameObject cardPrefab;
-    public Deck deck;
-
     public Hand playerHand, dealerHand;
 
     BlackjackState state;
@@ -30,7 +27,7 @@ public class BlackjackController : GameController
     {
         for (int i = 0; i < 52; i++)
         {
-            Card newCard = Instantiate(cardPrefab, transform).GetComponent<Card>();
+            Card newCard = Instantiate(CardPrefab, transform).GetComponent<Card>();
             int cardValue = Mathf.Min((i % 13) + 1, 10);
             if (cardValue == 1) cardValue = 11;
 

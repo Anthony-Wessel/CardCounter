@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CardMatcherController : GameController
 {
-    public Deck deck;
-    public GameObject CardPrefab;
     public int initialNumPairs;
 
     Card selectedCard;
