@@ -14,17 +14,17 @@ public class StageInfo : MonoBehaviour
     {
         controller = FindObjectOfType<GameController>();
 
-        if (controller.maxStage == 0) stageText.gameObject.SetActive(false);
-        if (controller.maxTimeSeconds == 0) timerText.gameObject.SetActive(false);
+        if (controller.MaxStage == 0) stageText.gameObject.SetActive(false);
+        if (controller.MaxTimeSeconds == 0) timerText.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        if (controller.maxStage != 0)
+        if (controller.MaxStage != 0)
         {
-            stageText.text = "Stage: " + (controller.currentStage+1) + "/" + (controller.maxStage+1);
+            stageText.text = "Stage: " + (controller.currentStage+1) + "/" + (controller.MaxStage+1);
         }
-        if (controller.maxTimeSeconds > 0)
+        if (controller.MaxTimeSeconds > 0)
         {
             timerText.text = controller.GetFormattedTime();
         }

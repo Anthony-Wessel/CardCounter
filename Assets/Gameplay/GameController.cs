@@ -7,19 +7,18 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public List<Card> cards;
 
-    [Header("Stage variables")]
     public bool useStages;
     public int currentStage;
     public int maxStage;
+    public int MaxStage { get { return useStages ? maxStage : 0; } }
 
-    [Header("Timer variables")]
     public bool useTimer;
     public int maxTimeSeconds;
+    public int MaxTimeSeconds { get { return useTimer ? maxTimeSeconds : 0; } }
     bool timerActive;
     string lastTime;
     float startTime;
 
-    //[Header("Wager variables")]
     public int minWager;
     public int maxWager;
     int selectedWager;
@@ -62,10 +61,9 @@ public class GameController : MonoBehaviour
 
     void StartGame()
     {
-        print(cards.Count);
         GoldManager.RemoveGold(selectedWager);
         LoadStage(0);
-        if (maxTimeSeconds > 0) StartTimer();
+        if (MaxTimeSeconds > 0) StartTimer();
     }
 
     void Update()
@@ -97,7 +95,7 @@ public class GameController : MonoBehaviour
 
     protected void Win()
     {
-        if (currentStage < maxStage)
+        if (currentStage < MaxStage)
             Invoke("loadNextStage", 1f);
         else
         {
@@ -138,7 +136,7 @@ public class GameController : MonoBehaviour
 
     float secondsRemaining()
     {
-        return Mathf.Max(0, maxTimeSeconds - (Time.time - startTime));
+        return Mathf.Max(0, MaxTimeSeconds - (Time.time - startTime));
     }
 
     public string GetFormattedTime()

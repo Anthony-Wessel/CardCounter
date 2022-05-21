@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using System.Reflection;
+using System;
 
 [CustomEditor(typeof(GameController), true)]
 [CanEditMultipleObjects]
@@ -11,6 +13,21 @@ public class GameControllerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
+        MonoBehaviour selectedMono;
+        if (target.GetType() == typeof(BlackjackController))
+            selectedMono = (BlackjackController)target;
+        if (target.GetType() == typeof(CardCounterController))
+            selectedMono = (CardCounterController)target;
+        if (target.GetType() == typeof(CardMatcherController))
+            selectedMono = (CardMatcherController)target;
+        if (target.GetType() == typeof(CardSorterController))
+            selectedMono = (CardSorterController)target;
+        else
+            selectedMono = (GameController)target;
+
+        using (new EditorGUI.DisabledScope(true))
+            EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour(selectedMono), target.GetType(), false);
+
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("deck"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("CardPrefab"));
@@ -21,7 +38,7 @@ public class GameControllerEditor : Editor
         {
             EditorGUILayout.BeginVertical();
 
-            EditorGUILayout.LabelField("Wagers");
+            EditorGUILayout.LabelField("Wagers", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("minWager"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("maxWager"));
 
@@ -58,55 +75,25 @@ public class GameControllerEditor : Editor
         {
             EditorGUILayout.BeginVertical();
 
-            EditorGUILayout.LabelField("Game Specific Variables");
-            // somehow put derived class properties here
+            EditorGUILayout.LabelField("Game Specific Variables", EditorStyles.boldLabel);
+
+            FieldInfo[] childFields = target.GetType().GetFields(BindingFlags.DeclaredOnly
+                                                                | BindingFlags.Instance
+                                                                | BindingFlags.Public
+                                                                | BindingFlags.NonPublic);
+
+            foreach (FieldInfo field in childFields)
+            {
+                if (field.IsPublic || field.GetCustomAttribute(typeof(SerializeField)) != null)
+                {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty(field.Name));
+                }
+            }
+
 
             EditorGUILayout.EndVertical();
         }
 
         serializedObject.ApplyModifiedProperties();
     }
-
-
-
-
-
-
-
-
-    /*
-    public override VisualElement CreateInspectorGUI()
-    {
-        VisualElement inspector = new VisualElement();
-
-        inspector.Add(new Label("This is a custom inspector"));
-        
-
-        Box stagesBox = new Box();
-
-        Toggle stagesToggle = new Toggle("Stages");
-        SerializedProperty stagesProperty = serializedObject.FindProperty("useStages");
-        stagesToggle.BindProperty(stagesProperty);
-        stagesBox.Add(stagesToggle);
-
-        if (stagesProperty.boolValue)
-        {
-            IntegerField currentStage = new IntegerField("Current Stage");
-            currentStage.bindingPath = "currentStage";
-            currentStage.BindProperty(serializedObject);
-            stagesBox.Add(currentStage);
-
-            IntegerField maxStage = new IntegerField("Max Stage");
-            maxStage.bindingPath = "maxStage";
-            maxStage.BindProperty(serializedObject);
-            stagesBox.Add(maxStage);
-        }
-
-        inspector.Add(stagesBox);
-        
-
-
-        return inspector;
-    }
-    */
 }
