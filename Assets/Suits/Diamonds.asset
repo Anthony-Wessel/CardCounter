@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97faffae4842e1f418bfbfb11078f63b, type: 3}
   m_Name: Diamonds
   m_EditorClassIdentifier: 
-  pip: {fileID: 2800000, guid: 9d32788915cc9154d83f5935658a885b, type: 3}
+  pip: {fileID: 2800000, guid: 76b8c69c4493f754dbaf89cc1df40f7e, type: 3}
   color: {r: 1, g: 0, b: 0, a: 1}
-  AceTexture: {fileID: 0}
-  JackTexture: {fileID: 0}
-  QueenTexture: {fileID: 0}
-  KingTexture: {fileID: 0}
+  AceTexture: {fileID: 2800000, guid: eea371e59e3a0cc49b3143e725cd4722, type: 3}
+  JackTexture: {fileID: 2800000, guid: bd42a5f52518bba44ab5373f21dad5f0, type: 3}
+  QueenTexture: {fileID: 2800000, guid: 46e1eab0a1fb2c142b6d93aaa996c0ef, type: 3}
+  KingTexture: {fileID: 2800000, guid: e245942901719e745b0d868154d45dcd, type: 3}

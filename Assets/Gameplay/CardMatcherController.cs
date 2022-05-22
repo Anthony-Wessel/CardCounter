@@ -42,8 +42,8 @@ public class CardMatcherController : GameController
 
             Card cardA = Instantiate(CardPrefab, transform).GetComponent<Card>();
             Card cardB = Instantiate(CardPrefab, transform).GetComponent<Card>();
-            cardA.Init(deck.cards[index], deck.cardBack, i);
-            cardB.Init(deck.cards[index], deck.cardBack, i);
+            cardA.Init(Deck.cards[index], Deck.cardBack, i);
+            cardB.Init(Deck.cards[index], Deck.cardBack, i);
 
             AddCard(cardA);
             AddCard(cardB);
@@ -80,8 +80,8 @@ public class CardMatcherController : GameController
         {
             Card selectedCardObj = selectedCard;
             Card cardObj = card;
-            Destroy(card.GetComponent<BoxCollider2D>());
-            Destroy(selectedCard.GetComponent<BoxCollider2D>());
+            Destroy(card.GetComponent<Collider>());
+            Destroy(selectedCard.GetComponent<Collider>());
 
             cards.Remove(card);
             cards.Remove(selectedCard);
@@ -93,8 +93,8 @@ public class CardMatcherController : GameController
 
             yield return new WaitForSeconds(0.5f);
 
-            cardObj.FadeOut();
-            selectedCardObj.FadeOut();
+            if (cardObj) cardObj.FadeOut();
+            if (selectedCardObj) selectedCardObj.FadeOut();
         }
         else
         {

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97faffae4842e1f418bfbfb11078f63b, type: 3}
-  m_Name: Hearts
+  m_Name: Minus
   m_EditorClassIdentifier: 
-  pip: {fileID: 2800000, guid: 87dbef741c5236944847e86e52129246, type: 3}
-  color: {r: 1, g: 0, b: 0, a: 1}
-  AceTexture: {fileID: 2800000, guid: 29844805ebcad704fb43295207288c31, type: 3}
+  pip: {fileID: 2800000, guid: 2a388bf6f32b28545854e6b6792ee516, type: 3}
+  color: {r: 0, g: 0, b: 1, a: 1}
+  AceTexture: {fileID: 2800000, guid: 5a2f15022da82e0409c4da83ecdc1375, type: 3}
   JackTexture: {fileID: 2800000, guid: bd42a5f52518bba44ab5373f21dad5f0, type: 3}
   QueenTexture: {fileID: 2800000, guid: 46e1eab0a1fb2c142b6d93aaa996c0ef, type: 3}
   KingTexture: {fileID: 2800000, guid: e245942901719e745b0d868154d45dcd, type: 3}

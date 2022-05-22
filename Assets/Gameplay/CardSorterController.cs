@@ -27,7 +27,7 @@ public class CardSorterController : GameController
         {
             Card newCard = Instantiate(CardPrefab, transform).GetComponent<Card>();
             int suitIndex = Random.Range(0, 4);
-            newCard.Init(deck.cards[suitIndex * 13 + indices[i]], deck.cardBack, indices[i]);
+            newCard.Init(Deck.cards[suitIndex * 13 + indices[i]], Deck.cardBack, indices[i]);
 
             newCard.Flip();
 

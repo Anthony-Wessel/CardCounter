@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     public int maxWager;
     int selectedWager;
 
-    public Deck deck;
+    public Deck Deck { get { return DeckList.ActiveDeck; } }
     public GameObject CardPrefab;
 
     Vector2 defaultCardSize = new Vector2(5, 7);
@@ -42,8 +42,6 @@ public class GameController : MonoBehaviour
 
     public void Restart()
     {
-        ClearBoard();
-
         ShowWagerPopup();
     }
 
@@ -55,6 +53,7 @@ public class GameController : MonoBehaviour
         Card[] cardObjs = FindObjectsOfType<Card>();
         foreach (Card card in cardObjs)
         {
+            card.StopAllCoroutines();
             Destroy(card.gameObject);
         }
     }    
@@ -102,6 +101,7 @@ public class GameController : MonoBehaviour
             FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Win);
             GoldManager.AddGold(selectedWager * 2);
             StopTimer();
+            ClearBoard();
         }
     }
     protected void Lose()
@@ -109,6 +109,7 @@ public class GameController : MonoBehaviour
         FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Lose);
 
         StopTimer();
+        ClearBoard();
     }
 
     protected void Draw()
@@ -116,6 +117,7 @@ public class GameController : MonoBehaviour
         FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Draw);
         GoldManager.AddGold(selectedWager);
         StopTimer();
+        ClearBoard();
     }
 
     #endregion

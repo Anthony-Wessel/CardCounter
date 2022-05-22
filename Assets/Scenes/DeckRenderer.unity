@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: RenderCamera
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 9e6ce514f7604d347b450c2f05148534, type: 2}
   m_TargetDisplay: 0
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 673765755}
   - component: {fileID: 673765753}
   - component: {fileID: 673765754}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Deck Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}

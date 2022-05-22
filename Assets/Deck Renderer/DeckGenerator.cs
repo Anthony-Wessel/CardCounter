@@ -29,7 +29,7 @@ public class DeckGenerator : MonoBehaviour
             {
                 RectTransform newCard = Instantiate(options.cardTemplates[templateIndex], transform).GetComponent<RectTransform>();
                 Texture2D numberTexture = options.numbers.GetTexture(templateIndex+1, options.useCourt);
-                newCard.GetComponent<PlayingCard>().Init(options.suits[suitIndex], numberTexture, options.cardTexture);
+                newCard.GetComponent<PlayingCard>().Init(options.suits[suitIndex], numberTexture, options.cardTexture, options.useCourt, templateIndex+1);
 
                 int cardNum = suitIndex * options.cardTemplates.Length + templateIndex;
                 int x = cardNum % size.x;

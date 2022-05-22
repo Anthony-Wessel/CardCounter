@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 172903969100462426}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8522012431213005286}
   - component: {fileID: 5718884255903270235}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Card Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   - {fileID: 1943987610866059460}
   - {fileID: 7823913225172555627}
   customTexture: {fileID: 594948147099302495}
+  pipHolder: {fileID: 958895810286155767}
 --- !u!1 &4520912042887686603
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +112,7 @@ GameObject:
   - component: {fileID: 5710590920347733425}
   - component: {fileID: 1801169297464285945}
   - component: {fileID: 1271119671564183628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +185,7 @@ GameObject:
   - component: {fileID: 5464383645080470221}
   - component: {fileID: 5368834414537851503}
   - component: {fileID: 594948147099302495}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CustomTexture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +258,7 @@ GameObject:
   - component: {fileID: 3479571798462417611}
   - component: {fileID: 6768857332714709185}
   - component: {fileID: 7823913225172555627}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9096915952975915522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Corner2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +369,7 @@ GameObject:
   - component: {fileID: 4999970875449960815}
   - component: {fileID: 4944593402335399651}
   - component: {fileID: 2770986627267077399}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +442,7 @@ GameObject:
   - component: {fileID: 113084388097303087}
   - component: {fileID: 2794723112353595796}
   - component: {fileID: 1943987610866059460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +515,7 @@ GameObject:
   - component: {fileID: 6223993239085099470}
   - component: {fileID: 734603044802527305}
   - component: {fileID: 1643838545820814015}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +588,7 @@ GameObject:
   - component: {fileID: 501516908755874462}
   - component: {fileID: 5063008118163066961}
   - component: {fileID: 5849669692013707566}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6588965920322149665}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Corner1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

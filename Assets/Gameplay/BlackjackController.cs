@@ -31,7 +31,7 @@ public class BlackjackController : GameController
             int cardValue = Mathf.Min((i % 13) + 1, 10);
             if (cardValue == 1) cardValue = 11;
 
-            newCard.Init(deck.cards[i], deck.cardBack, cardValue);
+            newCard.Init(Deck.cards[i], Deck.cardBack, cardValue);
             cards.Add(newCard);
         }
         state = BlackjackState.Normal;

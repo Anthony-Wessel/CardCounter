@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97faffae4842e1f418bfbfb11078f63b, type: 3}
   m_Name: Spades
   m_EditorClassIdentifier: 
-  pip: {fileID: 2800000, guid: 924773dab3e4a9640a58a882f048727c, type: 3}
-  color: {r: 0.1333332, g: 0, b: 1, a: 1}
-  AceTexture: {fileID: 0}
-  JackTexture: {fileID: 0}
-  QueenTexture: {fileID: 0}
-  KingTexture: {fileID: 0}
+  pip: {fileID: 2800000, guid: d4fbb9ce8c397804997a04a401d8a582, type: 3}
+  color: {r: 0, g: 0, b: 1, a: 1}
+  AceTexture: {fileID: 2800000, guid: 70ffcf7d0c4127a428fa9f755b5bda4c, type: 3}
+  JackTexture: {fileID: 2800000, guid: bd42a5f52518bba44ab5373f21dad5f0, type: 3}
+  QueenTexture: {fileID: 2800000, guid: 46e1eab0a1fb2c142b6d93aaa996c0ef, type: 3}
+  KingTexture: {fileID: 2800000, guid: e245942901719e745b0d868154d45dcd, type: 3}

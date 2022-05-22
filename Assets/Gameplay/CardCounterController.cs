@@ -35,7 +35,7 @@ public class CardCounterController : GameController
         for (int i = 0; i < 52; i++)
         {
             Card newCard = Instantiate(CardPrefab, transform).GetComponent<Card>();
-            newCard.Init(deck.cards[i], deck.cardBack, (i < deck.cards.Length / 2 ? -1 : 1) * ((i % 13) + 1));
+            newCard.Init(Deck.cards[i], Deck.cardBack, (i < Deck.cards.Length / 2 ? -1 : 1) * ((i % 13) + 1));
             cards.Add(newCard);
         }
 

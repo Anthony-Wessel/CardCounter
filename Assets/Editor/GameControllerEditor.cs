@@ -29,7 +29,6 @@ public class GameControllerEditor : Editor
             EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour(selectedMono), target.GetType(), false);
 
         {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("deck"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("CardPrefab"));
         }
 

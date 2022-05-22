@@ -17,6 +17,8 @@ public class WagerPopup : MonoBehaviour
 
     public void Init(int minWager, int maxWager, int selectedWager, Action<int> onWagerConfirmed)
     {
+        confirmButton.onClick.RemoveAllListeners();
+
         minWagerText.text = minWager.ToString();
         maxWagerText.text = maxWager.ToString();
         currentWagerText.text = selectedWager.ToString();
@@ -30,7 +32,6 @@ public class WagerPopup : MonoBehaviour
         confirmButton.onClick.AddListener(()=> {
             onWagerConfirmed.Invoke(getSelectedWager());
             SetVisible(false);
-            confirmButton.onClick.RemoveAllListeners();
         });
 
         SetVisible(true);
