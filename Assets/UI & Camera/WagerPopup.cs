@@ -25,9 +25,13 @@ public class WagerPopup : MonoBehaviour
 
         slider.minValue = minWager;
         slider.maxValue = maxWager;
-        slider.value = selectedWager;
+        slider.value = Mathf.Min(selectedWager, GoldManager.Gold);
 
-        slider.onValueChanged.AddListener((x) => currentWagerText.text = slider.value.ToString());
+        slider.onValueChanged.AddListener((x) => {
+            slider.value = Mathf.Min(slider.value, GoldManager.Gold);
+            currentWagerText.text = slider.value.ToString();
+        });
+    
 
         confirmButton.onClick.AddListener(()=> {
             onWagerConfirmed.Invoke(getSelectedWager());

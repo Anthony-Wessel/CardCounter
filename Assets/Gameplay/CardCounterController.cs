@@ -15,7 +15,6 @@ public class CardCounterController : GameController
     protected override void ClearBoard()
     {
         CardPile[] piles = FindObjectsOfType<CardPile>();
-        print(piles.Length);
         foreach (CardPile pile in piles)
         {
             pile.Clear();

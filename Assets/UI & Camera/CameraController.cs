@@ -17,6 +17,8 @@ public class CameraController : MonoBehaviour
     CameraTarget currentTarget;
     CameraTarget lastTarget;
 
+    public GameObject GameUI;
+
     private void Awake()
     {
         currentTarget = defaultTarget;
@@ -29,17 +31,17 @@ public class CameraController : MonoBehaviour
         {
             if (ct.game == game)
             {
-                StartCoroutine(MoveToGame(ct));
+                StartCoroutine(MoveToTarget(ct));
             }
         }
     }
 
     public void LoadMainMenu()
     {
-        StartCoroutine(MoveToGame(defaultTarget));
+        StartCoroutine(MoveToTarget(defaultTarget));
     }
 
-    IEnumerator MoveToGame(CameraTarget ct)
+    IEnumerator MoveToTarget(CameraTarget ct)
     {
         lastTarget = currentTarget;
         currentTarget = ct;
@@ -60,7 +62,15 @@ public class CameraController : MonoBehaviour
         currentTarget.game.SetActive(true);
 
         GameController gc = currentTarget.game.GetComponentInChildren<GameController>();
-        if (gc != null) gc.Restart();
+        if (gc != null)
+        {
+            GameUI.SetActive(true);
+            gc.Restart();
+        }
+        else
+        {
+            GameUI.SetActive(false);
+        }
     }
 
 

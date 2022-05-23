@@ -26,6 +26,8 @@ public class GameController : MonoBehaviour
     public Deck Deck { get { return DeckList.ActiveDeck; } }
     public GameObject CardPrefab;
 
+    bool running;
+
     Vector2 defaultCardSize = new Vector2(5, 7);
     public Vector2 CardSize
     {
@@ -38,6 +40,7 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         selectedWager = -1;
+        running = false;
     }
 
     public void Restart()
@@ -56,13 +59,23 @@ public class GameController : MonoBehaviour
             card.StopAllCoroutines();
             Destroy(card.gameObject);
         }
-    }    
+    }
 
     void StartGame()
     {
         GoldManager.RemoveGold(selectedWager);
         LoadStage(0);
         if (MaxTimeSeconds > 0) StartTimer();
+
+        running = true;
+    }
+
+    void EndGame()
+    {
+        StopTimer();
+        ClearBoard();
+
+        running = false;
     }
 
     void Update()
@@ -100,24 +113,29 @@ public class GameController : MonoBehaviour
         {
             FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Win);
             GoldManager.AddGold(selectedWager * 2);
-            StopTimer();
-            ClearBoard();
+
+            EndGame();
         }
     }
     protected void Lose()
     {
         FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Lose);
 
-        StopTimer();
-        ClearBoard();
+        EndGame();
     }
 
     protected void Draw()
     {
         FindObjectOfType<EndPanel>().Show(EndPanel.EndState.Draw);
         GoldManager.AddGold(selectedWager);
-        StopTimer();
-        ClearBoard();
+
+        EndGame();
+    }
+
+    public void Surrender()
+    {
+        if (running)
+            Lose();
     }
 
     #endregion
@@ -167,7 +185,7 @@ public class GameController : MonoBehaviour
 
     void ShowWagerPopup()
     {
-        FindObjectOfType<WagerPopup>().Init(minWager, Mathf.Min(maxWager, GoldManager.Gold), selectedWager == -1 ? minWager : selectedWager, OnWagerConfirmed);
+        FindObjectOfType<WagerPopup>().Init(minWager, maxWager, selectedWager == -1 ? minWager : selectedWager, OnWagerConfirmed);
     }
 
     void OnWagerConfirmed(int selectedWager)
