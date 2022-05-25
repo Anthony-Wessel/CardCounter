@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlackjackController : GameController
 {
     public Hand playerHand, dealerHand;
+    bool playerTurn;
 
     BlackjackState state;
     enum BlackjackState
@@ -38,31 +39,55 @@ public class BlackjackController : GameController
 
         cards.Shuffle();
 
-        if (Random.Range(0, 2) == 1) dealCard(dealerHand);
-        dealCard(playerHand);
-        dealCard(dealerHand);
+        bool dealerStart = Random.Range(0, 2) == 1;
+        if (dealerStart)
+        {
+            dealCard(dealerHand);
+            dealCard(playerHand);
+
+            Invoke("dealerTurn", 0.5f);
+        }
+        else
+        {
+            dealCard(playerHand);
+            dealCard(dealerHand);
+
+            playerTurn = true;
+        }
     }
 
     public void Hit()
     {
+        if (!playerTurn) return;
+
         dealCard(playerHand);
-        dealerTurn();
+        playerTurn = false;
+        if (state == BlackjackState.DealerStand)
+        {
+            if (playerHand.Score > dealerHand.Score) End();
+            playerTurn = true;
+        }
+        else Invoke("dealerTurn", 0.5f);
     }
     public void Stand()
     {
+        if (!playerTurn) return;
+
         if (state == BlackjackState.DealerStand)
         {
-            CalculateEnd();
+            End();
             return;
         }
         else
             state = BlackjackState.PlayerStand;
 
-        dealerTurn();
+        Invoke("dealerTurn", 0.5f);
     }
 
     void dealerTurn()
     {
+        playerTurn = true;
+
         if (state == BlackjackState.DealerStand || state == BlackjackState.Over) return;
 
         if (dealerHand.Score < playerHand.Score || dealerHand.Score < 15)
@@ -70,7 +95,7 @@ public class BlackjackController : GameController
         else
         {
             if (state == BlackjackState.PlayerStand)
-                CalculateEnd();
+                End();
             else
                 state = BlackjackState.DealerStand;
         }
@@ -80,19 +105,27 @@ public class BlackjackController : GameController
 
     void dealCard(Hand hand)
     {
+        if (state == BlackjackState.Over) return;
+
         if (hand.AddCard(cards[0]))
         {
-            state = BlackjackState.Over;
-            if (hand == dealerHand) Win();
-            else Lose();
+            End();
         }
         cards.RemoveAt(0);
     }
 
-    void CalculateEnd()
+    void End()
     {
         state = BlackjackState.Over;
-        if (playerHand.Score > dealerHand.Score) Win();
+
+        Invoke("CalculateEnd", 0.5f);
+    }
+
+    void CalculateEnd()
+    {
+        if (playerHand.Score > 21) Lose();
+        else if (dealerHand.Score > 21) Win();
+        else if (playerHand.Score > dealerHand.Score) Win();
         else if (playerHand.Score < dealerHand.Score) Lose();
         else Draw();
     }
