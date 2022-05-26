@@ -22,17 +22,23 @@ public class CardPile : MonoBehaviour
     public void AddCards(List<Card> cardsToAdd)
     {
         cards = cardsToAdd;
-
         cards.Shuffle();
 
+        StartCoroutine(MoveCards());
+    }
+
+    IEnumerator MoveCards()
+    {
         for (int i = 0; i < cards.Count; i++)
         {
             Card c = cards[i];
 
             c.OnClick = PlayCard;
-            c.transform.position = transform.position;
+            c.Move(transform.position);
             c.transform.parent = transform;
             c.GetComponent<SortingGroup>().sortingOrder = -i;
+
+            yield return new WaitForSeconds(0.05f);
         }
 
         cards[0].Flip();
@@ -40,6 +46,7 @@ public class CardPile : MonoBehaviour
 
     public void PlayCard(Card playedCard)
     {
+        if (!controller.running) return;
         if (cards.Count == 0) return;
 
         Card card = cards[0];

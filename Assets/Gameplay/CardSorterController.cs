@@ -11,13 +11,6 @@ public class CardSorterController : GameController
         cards = new List<Card>();
     }
 
-    protected override void ClearBoard()
-    {
-
-
-        base.ClearBoard();
-    }
-
     protected override void LoadStage(int stage)
     {
         List<int> indices = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
@@ -35,8 +28,13 @@ public class CardSorterController : GameController
         }
 
         FindObjectOfType<CardPlacer>().PlaceCards(cards, this);
+    }
 
+    public override void StartGame()
+    {
         SortCards(cards);
+
+        base.StartGame();
     }
 
     public override void AddCard(Card card)

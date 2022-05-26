@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
     public Deck Deck { get { return DeckList.ActiveDeck; } }
     public GameObject CardPrefab;
 
-    bool running;
+    public bool running;
 
     Vector2 defaultCardSize = new Vector2(5, 7);
     public Vector2 CardSize
@@ -61,12 +61,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void StartGame()
+    public virtual void StartGame()
     {
-        GoldManager.RemoveGold(selectedWager);
-        LoadStage(0);
-        if (MaxTimeSeconds > 0) StartTimer();
+        if (running) return;
 
+        if (MaxTimeSeconds > 0) StartTimer();
         running = true;
     }
 
@@ -191,7 +190,9 @@ public class GameController : MonoBehaviour
     void OnWagerConfirmed(int selectedWager)
     {
         this.selectedWager = selectedWager;
-        StartGame();
+
+        GoldManager.RemoveGold(selectedWager);
+        LoadStage(0);
     }
 
     #endregion

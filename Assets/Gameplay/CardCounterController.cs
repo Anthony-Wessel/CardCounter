@@ -30,7 +30,7 @@ public class CardCounterController : GameController
     {
         value = 10;
 
-        CardPile[] piles = FindObjectsOfType<CardPile>();
+        
         for (int i = 0; i < 52; i++)
         {
             Card newCard = Instantiate(CardPrefab, transform).GetComponent<Card>();
@@ -47,12 +47,23 @@ public class CardCounterController : GameController
             }
         }
 
+        StartCoroutine(PlaceCards());
+
+        decksRemaining = 4;
+    }
+
+    IEnumerator PlaceCards()
+    {
+        CardPile[] piles = FindObjectsOfType<CardPile>();
         for (int i = 0; i < piles.Length; i++)
         {
             piles[i].AddCards(cards.GetRange(i * 13, 13));
+            yield return new WaitForSeconds(0.15f);
         }
 
-        decksRemaining = piles.Length;
+        yield return new WaitForSeconds(1f);
+
+        StartGame();
     }
 
     public void PlayCard(Card c)
@@ -77,6 +88,9 @@ public class CardCounterController : GameController
     public void RemoveDeck()
     {
         if (--decksRemaining == 0)
+        {
+            running = false;
             Win();
+        }
     }
 }

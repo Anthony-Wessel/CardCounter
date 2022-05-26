@@ -46,6 +46,7 @@ public class BlackjackController : GameController
             dealCard(playerHand);
 
             Invoke("dealerTurn", 0.5f);
+            Invoke("StartGame", 0.5f);
         }
         else
         {
@@ -53,6 +54,7 @@ public class BlackjackController : GameController
             dealCard(dealerHand);
 
             playerTurn = true;
+            StartGame();
         }
     }
 
