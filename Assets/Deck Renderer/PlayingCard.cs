@@ -12,7 +12,7 @@ public class PlayingCard : MonoBehaviour
     [SerializeField] RawImage customTexture;
     [SerializeField] GameObject pipHolder;
 
-    public void Init(Suit suit, Texture2D number, Texture2D background, bool useCourt, int value)
+    public void Init(Suit suit, Texture2D number, Texture2D background, Texture2D courtTex)
     {
         this.background.texture = background;
         foreach (RawImage img in pips)
@@ -21,29 +21,11 @@ public class PlayingCard : MonoBehaviour
             img.color = suit.color;
         }
 
-        if (useCourt)
+        if (courtTex != null)
         {
-            if (value == 1 || value > 10)
-            {
-                pipHolder.SetActive(false);
-                customTexture.gameObject.SetActive(true);
-
-                switch(value)
-                {
-                    case 1:
-                        customTexture.texture = suit.AceTexture;
-                        break;
-                    case 11:
-                        customTexture.texture = suit.JackTexture;
-                        break;
-                    case 12:
-                        customTexture.texture = suit.QueenTexture;
-                        break;
-                    case 13:
-                        customTexture.texture = suit.KingTexture;
-                        break;
-                }
-            }
+            pipHolder.SetActive(false);
+            customTexture.gameObject.SetActive(true);
+            customTexture.texture = courtTex;
         }
             
 

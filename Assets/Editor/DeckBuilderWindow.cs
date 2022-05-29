@@ -47,6 +47,11 @@ public class DeckBuilderWindow : EditorWindow
 
         EditorGUILayout.PropertyField(deckOptions.FindProperty("useCourt"), empty);
 
+        EditorGUILayout.PropertyField(deckOptions.FindProperty("defaultAceTex"), empty);
+        EditorGUILayout.PropertyField(deckOptions.FindProperty("defaultJackTex"), empty);
+        EditorGUILayout.PropertyField(deckOptions.FindProperty("defaultQueenTex"), empty);
+        EditorGUILayout.PropertyField(deckOptions.FindProperty("defaultKingTex"), empty);
+
         if (GUILayout.Button("Build Deck", empty)) BuildDeck();
         if (GUILayout.Button("Render Deck", empty)) FindObjectOfType<DeckRenderer>().RenderToTexture();
 

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ActiveDeckOptions
   m_EditorClassIdentifier: 
   suits:
-  - {fileID: 11400000, guid: 0936eeec6d288d54d92ed1f80ef6f7fc, type: 2}
-  - {fileID: 11400000, guid: 0936eeec6d288d54d92ed1f80ef6f7fc, type: 2}
-  - {fileID: 11400000, guid: 4269f91e2b8e63e409059592ac77f38b, type: 2}
-  - {fileID: 11400000, guid: 4269f91e2b8e63e409059592ac77f38b, type: 2}
+  - {fileID: 11400000, guid: d1720905e19a78d42ae29f741fd05a98, type: 2}
+  - {fileID: 11400000, guid: 52de72f282fc19c49bce2f93c25b554e, type: 2}
+  - {fileID: 11400000, guid: 9f08c689776126e40b3c5b39797f4295, type: 2}
+  - {fileID: 11400000, guid: 84046d552db15404f967d6bd835258b5, type: 2}
   cardTemplates:
   - {fileID: 7676532028838564824, guid: c5960cb70abb2b5428868a4e198be4e8, type: 3}
   - {fileID: 7676532028838564824, guid: f6e2a75251be3a141bba292fb0524477, type: 3}
@@ -34,4 +34,8 @@ MonoBehaviour:
   cardTexture: {fileID: 2800000, guid: 95d4fbb8fa7d2624f93f824388d5434b, type: 3}
   cardBackTexture: {fileID: 2800000, guid: 4fee8ea07de7aa34097096f53a4d8ada, type: 3}
   numbers: {fileID: 11400000, guid: cbc26783a5e1d9b4888d283ad59f4892, type: 2}
-  useCourt: 0
+  useCourt: 1
+  defaultAceTex: {fileID: 0}
+  defaultJackTex: {fileID: 2800000, guid: 5b1edc48ec36391419f572220af3d99c, type: 3}
+  defaultQueenTex: {fileID: 2800000, guid: a60382f037e2e4b4485050ed6d710845, type: 3}
+  defaultKingTex: {fileID: 2800000, guid: 701d061b66f93734086700555f16fd51, type: 3}

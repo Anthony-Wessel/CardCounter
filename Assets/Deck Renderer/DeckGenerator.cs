@@ -29,7 +29,7 @@ public class DeckGenerator : MonoBehaviour
             {
                 RectTransform newCard = Instantiate(options.cardTemplates[templateIndex], transform).GetComponent<RectTransform>();
                 Texture2D numberTexture = options.numbers.GetTexture(templateIndex+1, options.useCourt);
-                newCard.GetComponent<PlayingCard>().Init(options.suits[suitIndex], numberTexture, options.cardTexture, options.useCourt, templateIndex+1);
+                newCard.GetComponent<PlayingCard>().Init(options.suits[suitIndex], numberTexture, options.cardTexture, GetTex(options, suitIndex, templateIndex+1));
 
                 int cardNum = suitIndex * options.cardTemplates.Length + templateIndex;
                 int x = cardNum % size.x;
@@ -55,5 +55,35 @@ public class DeckGenerator : MonoBehaviour
         int height = Mathf.CeilToInt(remainder);
 
         return new Vector2Int(width, height);
+    }
+
+    Texture2D GetTex(DeckOptions options, int suitIndex, int value)
+    {
+        if (!options.useCourt) return null;
+        if (value > 1 && value < 11) return null;
+
+        Suit suit = options.suits[suitIndex];
+
+        switch (value)
+        {
+            case 1:
+                if (suit.AceTexture != null) return suit.AceTexture;
+                else if (options.defaultAceTex != null) return options.defaultAceTex;
+                break;
+            case 11:
+                if (suit.JackTexture != null) return suit.JackTexture;
+                else if (options.defaultJackTex != null) return options.defaultJackTex;
+                break;
+            case 12:
+                if (suit.QueenTexture != null) return suit.QueenTexture;
+                else if (options.defaultQueenTex != null) return options.defaultQueenTex;
+                break;
+            case 13:
+                if (suit.KingTexture != null) return suit.KingTexture;
+                else if (options.defaultKingTex != null) return options.defaultKingTex;
+                break;
+        }
+
+        return null;
     }
 }

@@ -8,7 +8,7 @@ public class Suit : ScriptableObject
     public Texture2D pip;
     public Color color;
 
-    [Header("Optional Textures")]
+    [Header("Override Textures")]
     public Texture2D AceTexture;
     public Texture2D JackTexture;
     public Texture2D QueenTexture;

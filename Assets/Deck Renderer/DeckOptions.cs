@@ -13,4 +13,8 @@ public class DeckOptions : ScriptableObject
 
     public bool useCourt;
 
+    public Texture2D defaultAceTex;
+    public Texture2D defaultJackTex;
+    public Texture2D defaultQueenTex;
+    public Texture2D defaultKingTex;
 }
